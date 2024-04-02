@@ -101,7 +101,6 @@ public class DeviceWithGateway {
 
                     // Check for incoming messages
                     if (acceptGatewayMessages && inFromClient.available() > 0) {
-                        System.out.println("Device: " + deviceCanId + ". Reading message.");
                         byte[] frameBytes = new byte[13];
                         inFromClient.read(frameBytes);
                         String message = readDataString(frameBytes);
@@ -122,7 +121,7 @@ public class DeviceWithGateway {
                     byte[] frame = createFrame(data);
                     outToClient.write(frame);
                     outToClient.flush();
-                    System.out.println("Device: " + deviceCanId + ". Frame sent. " + Arrays.toString(frame));
+                    System.out.println("Device: " + deviceCanId + ". Frame sent, value: " + data);
 
                     // Repeat sending
                     Thread.sleep(sendFrequencyMilliseconds);
