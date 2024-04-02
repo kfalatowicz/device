@@ -73,7 +73,6 @@ public class DeviceWithGateway {
                                     // Check for RESET message
                                     if (message.equals("RESET")) {
                                         lastWatchdogResetTime.set(System.currentTimeMillis());
-                                        System.out.println("Device: " + deviceCanId + ". Watchdog timer RESET.");
                                     }
                                 }
 
@@ -102,6 +101,7 @@ public class DeviceWithGateway {
 
                     // Check for incoming messages
                     if (acceptGatewayMessages && inFromClient.available() > 0) {
+                        System.out.println("Device: " + deviceCanId + ". Reading message.");
                         byte[] frameBytes = new byte[13];
                         inFromClient.read(frameBytes);
                         String message = readDataString(frameBytes);
